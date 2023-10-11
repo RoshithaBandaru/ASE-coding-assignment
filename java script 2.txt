@@ -1,0 +1,5 @@
+//2. Perforn sorting of an array in descending order.
+
+function compareNumbersDescending(a, b) {
+  return b - a;
+}
