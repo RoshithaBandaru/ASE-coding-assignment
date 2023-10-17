@@ -1,133 +1,74 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>Survey Form</title>
-  <style>
-    body {
-      font-family: sans-serif;
-    }
-
-    .form {
-      width: 500px;
-      margin: 0 auto;
-    }
-
-    .field {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .label {
-      width: 100px;
-      text-align: right;
-    }
-
-    .input {
-      width: 300px;
-    }
-
-    .button {
-      width: 100px;
-      margin-top: 10px;
-    }
-
-    .popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 10;
-      display: none;
-    }
-
-    .popup-content {
-      width: 500px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 20px;
-    }
-
-    .popup-header {
-      text-align: center;
-    }
-
-    .popup-close {
-      position: absolute;
-      top: 0;
-      right: 0;
-      cursor: pointer;
-    }
-
-    .popup-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .popup-label {
-      width: 100px;
-      text-align: right;
-    }
-
-    .popup-value {
-      width: 300px;
-    }
-  </style>
 </head>
 <body>
-
-  <div class="form">
+  <div class="form-container">
     <h1>Survey Form</h1>
+    <form id="surveyForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required><br>
 
-    <div class="field">
-      <label for="first_name">First Name:</label>
-      <input type="text" id="first_name" name="first_name" required>
-    </div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required><br>
 
-    <div class="field">
-      <label for="last_name">Last Name:</label>
-      <input type="text" id="last_name" name="last_name" required>
-    </div>
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required><br>
 
-    <div class="field">
-      <label for="date_of_birth">Date of Birth:</label>
-      <input type="date" id="date_of_birth" name="date_of_birth" required>
-    </div>
-
-    <div class="field">
       <label for="country">Country:</label>
       <select id="country" name="country" required>
-        <option value="">Select a country</option>
-        <option value="India">India</option>
-        <option value="United States">United States</option>
-        <option value="United Kingdom">United Kingdom</option>
-      </select>
-    </div>
+        <option>select option</option>
+        <option>India</option>
+        <option>Sri Lanka</option>
+        <option>Pakistan</option>
+      </select><br>
 
-    <div class="field">
-      <label for="gender">Gender:</label>
-      <input type="checkbox" id="gender_male" name="gender" value="male"> Male
-      <input type="checkbox" id="gender_female" name="gender" value="female"> Female
-    </div>
+      <label>Gender:</label><br>
+           <input type="radio" name="gender">Male
+           <input type="radio" name="gender">Female
+           <input type="radio" name="gender">Donot wish to say
+      <br>
 
-    <div class="field">
       <label for="profession">Profession:</label>
-      <input type="text" id="profession" name="profession" required>
-    </div>
+      <input type="text" id="profession" name="profession" required><br>
 
-    <div class="field">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-    </div>
+      <input type="email" id="email" name="email" required><br>
 
-    <div class="field">
-      <label for="mobile_number">Mobile Number:</label>
-      <input type="tel" id="mobile_number" name="mobile_number" required>
-    </div>
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" required><br>
 
-    <div class="buttons">
-      <button type="button" id="submit_button">Submit</button>
-      <button type="button" id="reset_button">Reset</button>
+      <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+      <button type="button" id="resetBtn" onclick="resetForm()">Reset</button>
+    </form>
+  </div>
+
+  <script>
+    function submitForm() {
+      
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+      const dob = document.getElementById("dob").value;
+      const country = document.getElementById("country").value;
+      const gender = Array.from(document.querySelectorAll("input[name=gender]:checked")).map(input => input.value);
+      const profession = document.getElementById("profession").value;
+      const email = document.getElementById("email").value;
+      const mobile = document.getElementById("mobile").value;
+
+      
+      const popupContent = 
+'Fill all fields';
+
+      alert(popupContent);
+
+      // Reset the form
+      document.getElementById("surveyForm").reset();
+    }
+
+    function resetForm() {
+      // Reset the form
+      document.getElementById("surveyForm").reset();
+    }
+  </script>
+</body>
+</html>

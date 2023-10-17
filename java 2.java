@@ -1,40 +1,47 @@
 //2. Enter Roman Number as input and convert it to integer. (ex IX = 9)
 
-import java.util.HashMap;
-
-public class RomanToInt {
-
-    public static int romanToInt(String s) {
-
-        if (s == null || s.length() == 0)
-            return -1;
-
-        System.out.println("Roman Number: " + s);
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        map.put('I', 1);
-        map.put('V', 5);
-        map.put('X', 10);
-        map.put('L', 50);
-        map.put('C', 100);
-        map.put('D', 500);
-        map.put('M', 1000);
-        int len = s.length(), result = map.get(s.charAt(len - 1));
-        for (int i = len - 2; i >= 0; i--) {
-            if (map.get(s.charAt(i)) >= map.get(s.charAt(i + 1)))
-                result += map.get(s.charAt(i));
-            else
-                result -= map.get(s.charAt(i));
+public class Main
+{
+	public static void main(String[] args) {
+		
+		Main obj = new Main();
+      String inputRoman= "IX";
+      System.out.println("The Integer value of given Roman number is: "+obj.romanToInt(inputRoman));
+   } 
+   int NumValue(char rom) {
+      if (rom == 'I')
+         return 1;
+      if (rom == 'V')
+         return 5;
+      if (rom == 'X')
+         return 10;
+      if (rom == 'L')
+         return 50;
+      if (rom == 'C')
+         return 100;
+      if (rom == 'D')
+         return 500;
+      if (rom == 'M')
+         return 1000;
+      return -1;
+   }
+   int romanToInt(String str) {
+       int sum = 0;
+      for (int i=0; i<str.length(); i++) {
+         int s1 = NumValue(str.charAt(i));
+         if (i+1 <str.length()) {
+           int s2 = NumValue(str.charAt(i+1));
+           if (s1 >= s2) {
+              sum = sum + s1;
+           }
+           else{
+              sum = sum - s1;
+           }
         }
-
-        System.out.println("Integer: " + result);
-        System.out.println("--");
-        return result;
-    }
-
-    public static void main(String[] args) {
-        romanToInt("MIXX");
-        romanToInt("IXX");
-        romanToInt("DXLII");
-        romanToInt("MXXIII");
-    }
-}
+        else {
+           sum = sum + s1;
+        } 
+     }  
+     return sum;
+   }
+} 
